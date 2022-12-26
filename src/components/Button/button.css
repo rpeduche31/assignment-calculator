@@ -1,0 +1,15 @@
+.button-component{
+    height:110px;
+    width:110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid gainsboro;
+    font-size: 38px;
+    cursor: pointer;
+    background-color: white;
+}
+
+.button-component:active{
+    opacity: .9;
+}
