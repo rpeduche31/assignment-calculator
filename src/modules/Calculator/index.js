@@ -26,20 +26,23 @@ const CalculatorButtons = ({ numValue }) => {
   const clearText = clearDisplayText ? 'C' : 'AC';
   const { functionCollections } = useCalculatorOperations();
   const { digit, operator } = functionCollections;
+
+  const onHandleButtonClick = (btnType) => {
+    if (btnType.type === 'digit') {
+      digit(Number(btnType.label));
+    } else if (btnType.function === 'operator') {
+      operator(btnType.optSymbol);
+    } else {
+      functionCollections[btnType.key](clearDisplayText);
+    }
+  };
+
   return (
     <>
       {buttonText.map((btn) => {
         return (
           <Button
-            onHandleClick={() => {
-              if (btn.type === 'digit') {
-                digit(Number(btn.label));
-              } else if (btn.function === 'operator') {
-                operator(btn.optSymbol);
-              } else {
-                functionCollections[btn.key](clearDisplayText);
-              }
-            }}
+            onHandleClick={() => onHandleButtonClick(btn)}
             key={btn.key}
             buttonStyles={
               btn?.key === 'zero'
